@@ -1,8 +1,6 @@
 package openStreetMap;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.restassured.RestAssured;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.Sender;
@@ -10,6 +8,7 @@ import utils.Sender;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ApiTests {
 
@@ -27,6 +26,6 @@ public class ApiTests {
                 "  [\"amenity\"=\"bar\"];\n" +
                 "out;";
         List<String> placeIds = new Sender().sendPostRequestXml(data).getList("osm.node.@id");
-        Assert.assertTrue("No necessary places in your coordinates", placeIds.size() > 0);
+        assertThat("No necessary places in your coordinates", placeIds.size() > 0);
     }
 }
