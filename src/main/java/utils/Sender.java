@@ -1,8 +1,6 @@
 package utils;
 
 import io.restassured.path.xml.XmlPath;
-import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class Sender {
@@ -12,6 +10,7 @@ public class Sender {
     public XmlPath sendPostRequestXml(String data) {
         XmlPath xmlPath = given()
                 .body(data)
+                .when()
                 .post("/post_request")
                 .then()
                 .assertThat()
