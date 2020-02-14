@@ -1,5 +1,6 @@
 package openStreetMap;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.restassured.RestAssured;
 import org.junit.Assert;
 import org.junit.Before;

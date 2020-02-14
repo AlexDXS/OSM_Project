@@ -10,11 +10,14 @@ public class Sender {
     }
 
     public XmlPath sendPostRequestXml(String data) {
-        Response response = given().
-                body(data).
-                post("/post_request");
-        String xml = response.body().asString();
-        XmlPath xmlPath = new XmlPath(xml);
+        XmlPath xmlPath = given()
+                .body(data)
+                .post("/post_request")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .extract()
+                .xmlPath();
         return xmlPath;
     }
 }
